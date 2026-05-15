@@ -1,4 +1,4 @@
-### BSD Milles Bourne Game
+### BSD Mille Bornes Game
 
 This repository has a (very hacked up) copy of the ancient mille game
 from the original BSD source code distributions. It has been modified
