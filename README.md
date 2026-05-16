@@ -21,9 +21,12 @@ references to be x_stdscr instead.
 minimum, at least make sure it still builds on FreeBSD and NetBSD. But
 I've tested it on several recent Linux distros (Ubuntu 24.04, Mint 22.3,
 Debian Bookworm, Zorin 18, probably some others I've forgotten now....)
+It probably builds on MacOS, but I don't have a working Mac anymore so I
+don't have any way to test that.
 
 ### KOWN BUGS
 
 1. At the conclusion of each "hand", the "Milestones Played" of the player
 who lost that hand will not be displayed.
+    - Fixed as of 2026-05-26.
 
