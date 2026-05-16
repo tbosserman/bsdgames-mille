@@ -49,7 +49,7 @@ static char sccsid[] = "@(#)print.c	8.1 (Berkeley) 5/31/93";
  *	Show the given card if it is different from the last one shown
  */
 void
-show_card(int y, int x, int c, CARD *lc)
+show_card(int y, int x, CARD c, CARD *lc)
 {
 	if (c == *lc)
 		return;
@@ -138,6 +138,9 @@ prscore(bool for_real)
 	x_stdscr = Score;
 	for (pp = Player; pp < &Player[2]; pp++) {
 		x = (pp - Player) * 6 + 21;
+		if (Debug)
+			fprintf(outf, "prscore: x=%d  pp->mileage=%d  pp->sh_mileage=%d\n",
+				x,pp->mileage, pp->sh_mileage);
 		show_score(1, x, pp->mileage, &pp->sh_mileage);
 		if (pp->safescore != pp->sh_safescore) {
 			x_mvprintw(2, x, Score_fmt, pp->safescore);

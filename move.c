@@ -38,6 +38,7 @@ static char sccsid[] = "@(#)move.c	8.1 (Berkeley) 5/31/93";
 #include <termios.h>
 
 #include	"mille.h"
+#include	<sys/param.h>
 //#include	<unctrl.h>
 
 # ifdef	attron
@@ -242,10 +243,8 @@ mustpick:
 	}
 
 	card = pp->hand[Card_no];
-#ifdef DEBUG
 	if (Debug)
 		fprintf(outf, "PLAYCARD: Card = %s\n", C_name[card]);
-#endif
 	Next = FALSE;
 	switch (card) {
 	  case C_200:

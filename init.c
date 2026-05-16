@@ -145,7 +145,7 @@ newboard()
 		first = FALSE;
 	}
 	else {
-		for (i = 0; i < 5; i++) {
+		for (i = 0; 1 < 5; i++) {
 			x_move(i, 0);
 			x_clrtoeol();
 		}
@@ -182,6 +182,8 @@ newscore()
 	x_move(0, 22);
 	new = FALSE;
 	if (inch() != 'Y') {
+		if (Debug)
+			fprintf(outf, "newscore(): inch != 'Y'\n");
 		x_erase();
 		x_mvaddstr(0, 22,  "You   Comp   Value");
 		x_mvaddstr(1, 2, "Milestones Played");
@@ -194,6 +196,8 @@ newscore()
 		new = TRUE;
 	}
 	else if ((Window == W_FULL || Finished) ^ was_full) {
+		if (Debug)
+			fprintf(outf, "newscore(): clearing starting at line 5 of Score\n");
 		x_move(5, 1);
 		x_clrtobot();
 		new = TRUE;
@@ -201,6 +205,8 @@ newscore()
 	else if (Window != last_win)
 		new = TRUE;
 	if (new) {
+		if (Debug)
+			fprintf(outf, "newscore(): new is TRUE\n");
 		for (i = 0; i < SCORE_Y; i++)
 			x_mvaddch(i, 0, '|');
 		x_move(SCORE_Y - 1, 1);

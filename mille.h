@@ -277,10 +277,10 @@ extern WINDOW *x_stdscr;
 extern int x_mvprintw(int y, int x, const char *fmt, ...);
 
 #define x_addstr(s) waddstr(x_stdscr,s)
-#define x_mvaddstr(x,y,s) mvwaddstr(x_stdscr,x,y,s)
+#define x_mvaddstr(y,x,s) mvwaddstr(x_stdscr,y,x,s)
 #define x_addch(c) waddch(x_stdscr,c)
-#define x_mvaddch(x,y,c) mvwaddch(x_stdscr,x,y,c)
-#define x_move(x,y) wmove(x_stdscr,x,y)
+#define x_mvaddch(y,x,c) mvwaddch(x_stdscr,y,x,c)
+#define x_move(y,x) wmove(x_stdscr,y,x)
 #define x_erase() werase(x_stdscr)
 #define x_clrtobot() wclrtobot(x_stdscr)
 #define x_clrtoeol() wclrtoeol(x_stdscr)

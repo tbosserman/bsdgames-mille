@@ -55,6 +55,7 @@ static const char rcsid[] =
 #ifndef ORIG_CODE
 #include <sys/time.h>
 #endif
+#include <unistd.h>
 
 /*
  * @(#)mille.c	1.3 (Berkeley) 5/10/83
@@ -69,7 +70,7 @@ static void usage __P((void));
 int
 main(int ac, char *av[])
 {
-int		code;
+    int		ch, code;
 #ifndef ORIG_CODE
 	struct timeval  tv;
 	struct timezone tz;
@@ -79,21 +80,28 @@ int		code;
 	/* revoke */
 	code = setgid(getgid());
 
-	if (strcmp(av[0], "a.out") == 0) {
-		outf = fopen("q", "w");
+	while ((ch = getopt(ac, av, "d")) != EOF)
+	{
+		switch(ch)
+		{
+			case 'd':
+				Debug = 1;
+				break;
+			default:
+				usage();
+		}
+	}
+		
+	if (Debug)
+	{
+		outf = fopen("mille-debug.log", "w");
 		setbuf(outf, (char *)NULL);
-		Debug = TRUE;
 	}
 	restore = FALSE;
-	switch (ac) {
-	  case 2:
+	if (optind < ac)
+	{
 		rest_f(av[1]);
 		restore = TRUE;
-	  case 1:
-		break;
-	  default:
-		usage();
-		/* NOTREACHED */
 	}
 	Play = PLAYER;
 	initscr();

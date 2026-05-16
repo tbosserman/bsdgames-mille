@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-DSYSV -O
+CFLAGS=-DSYSV -g
 
 #LDADD=	-lcurses -ltermcap -lcompat
 LDADD=	-lncurses

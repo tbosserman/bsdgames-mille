@@ -64,15 +64,13 @@ error(char *str, ...)
         va_list         arg;
 	int		code;
 
-	x_stdscr = Score;
-        move(ERR_Y, ERR_X);
-        va_start(arg, str);
-	code = vw_printw(x_stdscr, str, arg);
-        va_end(arg);
-	clrtoeol();
+	wmove(Score, ERR_Y, ERR_X);
+	va_start(arg, str);
+	code = vw_printw(Score, str, arg);
+	va_end(arg);
+	wclrtoeol(Score);
 	putchar('\07');
-	x_refresh();
-	x_stdscr = Board;
+	wrefresh(Score);
 	return FALSE;
 }
 
@@ -90,7 +88,7 @@ getcard()
 		if (c == killchar() || c == erasechar())
 			return -1;
 		x_addstr(unctrl(c));
-		clrtoeol();
+		x_clrtoeol();
 		switch (c) {
 		  case '1':	case '2':	case '3':
 		  case '4':	case '5':	case '6':
@@ -114,7 +112,7 @@ getcard()
 					return -1;
 				else if (c1 == erasechar()) {
 					x_addch('\b');
-					clrtoeol();
+					x_clrtoeol();
 					x_refresh();
 					goto cont;
 				}
@@ -190,7 +188,7 @@ getyn(int promptno)
 	for (;;) {
 		leaveok(Board, FALSE);
 		prompt(promptno);
-		clrtoeol();
+		x_clrtoeol();
 		x_refresh();
 		switch (c = readch()) {
 		  case 'n':	case 'N':
