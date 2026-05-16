@@ -85,18 +85,13 @@ main(int ac, char *av[])
 		switch(ch)
 		{
 			case 'd':
-				Debug = 1;
+				Debug = TRUE;
 				break;
 			default:
 				usage();
 		}
 	}
-		
-	if (Debug)
-	{
-		outf = fopen("mille-debug.log", "w");
-		setbuf(outf, (char *)NULL);
-	}
+
 	restore = FALSE;
 	if (optind < ac)
 	{

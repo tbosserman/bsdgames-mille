@@ -118,22 +118,16 @@ norm:
 		return;
 	}
 
-#ifdef DEBUG
-	if (Debug)
-		fprintf(outf, "CALCMOVE: cango = %d, canstop = %d, safe = %d\n",
-			cango, canstop, safe);
-#endif
+	debug("CALCMOVE: cango = %d, canstop = %d, safe = %d\n",
+		cango, canstop, safe);
 	if (foundend)
 		foundend = !check_ext(TRUE);
 	for (i = 0; safe && i < HAND_SZ; i++) {
 		if (issafety(pp->hand[i])) {
 			if (onecard(op) || (foundend && cango && !canstop)) {
-#ifdef DEBUG
-				if (Debug)
-					fprintf(outf,
-						"CALCMOVE: onecard(op) = %d, foundend = %d\n",
-						onecard(op), foundend);
-#endif
+				debug(
+					"CALCMOVE: onecard(op) = %d, foundend = %d\n",
+					onecard(op), foundend);
 playsafe:
 				Movetype = M_PLAY;
 				Card_no = i;
@@ -149,12 +143,9 @@ playsafe:
 				card = (Topcard - Deck) - roll(1, 10);
 				if ((!pp->mileage) != (!op->mileage))
 					card -= 7;
-#ifdef DEBUG
-				if (Debug)
-					fprintf(outf,
-						"CALCMOVE: card = %d, DECK_SZ / 4 = %d\n",
-						card, DECK_SZ / 4);
-#endif
+				debug(
+					"CALCMOVE: card = %d, DECK_SZ / 4 = %d\n",
+					card, DECK_SZ / 4);
 				if (card < DECK_SZ / 4)
 					goto playsafe;
 			}
@@ -179,11 +170,7 @@ redoit:
 	for (i = 0; i < HAND_SZ; i++) {
 		card = pp->hand[i];
 		if (issafety(card) || playit[i] == (cango != 0)) {
-#ifdef DEBUG
-			if (Debug)
-				fprintf(outf, "CALCMOVE: switch(\"%s\")\n",
-					C_name[card]);
-#endif
+			debug("CALCMOVE: switch(\"%s\")\n", C_name[card]);
 			switch (card) {
 			  case C_25:	case C_50:
 				diff = End - pp->mileage;

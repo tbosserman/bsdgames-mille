@@ -236,33 +236,34 @@ extern WINDOW	*Board, *Miles, *Score;
  * functions
  */
 
-CARD	getcard();
-int     check_ext(bool forcomp);
-int     roll(int ndie, int nsides);
-int     isrepair(CARD card);
-int     safety(CARD card);
-void    varpush(int file, varpush_t);
-void    account(CARD card);
-int     rest_f(char *file);
-void    sort(CARD *hand);
-void    die(int code);
-void    shuffle();
-void    init();
-void    newboard();
-void    newscore();
-void    prboard();
-void    domove();
-int     getyn(int promptno);
-int     onecard(PLAY *pp);
-void    prompt(int promptno);
-int     save();
-int     canplay(PLAY *pp, PLAY *op, CARD card);
-void    calcmove();
-void    rub(int);
-int     error(char *str, ...);
-int     readch();
-void    prscore(bool for_real);
-void    finalscore(PLAY *pp);
+extern CARD	getcard();
+extern int     check_ext(bool forcomp);
+extern int     roll(int ndie, int nsides);
+extern int     isrepair(CARD card);
+extern int     safety(CARD card);
+extern void    varpush(int file, varpush_t);
+extern void    account(CARD card);
+extern int     rest_f(char *file);
+extern void    sort(CARD *hand);
+extern void    die(int code);
+extern void    shuffle();
+extern void    init();
+extern void    newboard();
+extern void    newscore();
+extern void    prboard();
+extern void    domove();
+extern int     getyn(int promptno);
+extern int     onecard(PLAY *pp);
+extern void    prompt(int promptno);
+extern int     save();
+extern int     canplay(PLAY *pp, PLAY *op, CARD card);
+extern void    calcmove();
+extern void    rub(int);
+extern int     error(char *str, ...);
+extern int     readch();
+extern void    prscore(bool for_real);
+extern void    finalscore(PLAY *pp);
+extern void    debug(char *fmt, ...);
 
 // A wrapper around the ncurses routines that use stdscr.
 // In newer versions of ncurses, stdscr is not a regular "screen".
@@ -285,4 +286,7 @@ extern int x_mvprintw(int y, int x, const char *fmt, ...);
 #define x_clrtobot() wclrtobot(x_stdscr)
 #define x_clrtoeol() wclrtoeol(x_stdscr)
 #define x_refresh() wrefresh(x_stdscr)
+#define x_inch() winch(x_stdscr)
+#define x_standout() wstandout(x_stdscr)
+#define x_standend() wstandend(x_stdscr)
 

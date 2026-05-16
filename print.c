@@ -101,9 +101,9 @@ prboard()
 	show_card(8, COMP_STRT + CARD_STRT, Discard, &Sh_discard);
 	if (End == 1000) {
 		x_move(EXT_Y, EXT_X);
-		standout();
+		x_standout();
 		x_addstr("Extension");
-		standend();
+		x_standend();
 	}
 	wrefresh(Board);
 	wrefresh(Miles);
@@ -138,9 +138,6 @@ prscore(bool for_real)
 	x_stdscr = Score;
 	for (pp = Player; pp < &Player[2]; pp++) {
 		x = (pp - Player) * 6 + 21;
-		if (Debug)
-			fprintf(outf, "prscore: x=%d  pp->mileage=%d  pp->sh_mileage=%d\n",
-				x,pp->mileage, pp->sh_mileage);
 		show_score(1, x, pp->mileage, &pp->sh_mileage);
 		if (pp->safescore != pp->sh_safescore) {
 			x_mvprintw(2, x, Score_fmt, pp->safescore);

@@ -254,11 +254,17 @@ check_more()
 int
 readch()
 {
-	reg int		cnt;
+	int		cnt, len;
 	static char	c;
 
-	for (cnt = 0; read(0, &c, 1) <= 0; cnt++)
+	cnt = 0;
+	for (;;)
+	{
+		len = read(0, &c, 1);
 		if (cnt > 100)
 			exit(1);
+		if (len > 0)
+			break;
+	}
 	return c;
 }

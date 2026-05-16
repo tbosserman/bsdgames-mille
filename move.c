@@ -104,20 +104,13 @@ check_go()
 		for (i = 0; i < HAND_SZ; i++) {
 			card = pp->hand[i];
 			if (issafety(card) || canplay(pp, op, card)) {
-#ifdef DEBUG
-				if (Debug) {
-					fprintf(outf, "CHECK_GO: can play %s (%d), ", C_name[card], card);
-					fprintf(outf, "issafety(card) = %d, ", issafety(card));
-					fprintf(outf, "canplay(pp, op, card) = %d\n", canplay(pp, op, card));
-				}
-#endif
+				debug("CHECK_GO: can play %s (%d), ", C_name[card], card);
+				debug("issafety(card) = %d, ", issafety(card));
+				debug("canplay(pp, op, card) = %d\n", canplay(pp, op, card));
 				return;
 			}
-#ifdef DEBUG
-			else if (Debug)
-				fprintf(outf, "CHECK_GO: cannot play %s\n",
-				    C_name[card]);
-#endif
+			else
+				debug("CHECK_GO: cannot play %s\n", C_name[card]);
 		}
 	}
 	Finished = TRUE;
@@ -172,10 +165,7 @@ domove()
 			error("already picked");
 		else {
 			pp->hand[0] = *--Topcard;
-#ifdef DEBUG
-			if (Debug)
-				fprintf(outf, "DOMOVE: Draw %s\n", C_name[*Topcard]);
-#endif
+				debug("DOMOVE: Draw %s\n", C_name[*Topcard]);
 acc:
 			if (Play == COMP) {
 				account(*Topcard);
@@ -185,10 +175,7 @@ acc:
 			if (pp->hand[1] == C_INIT && Topcard > Deck) {
 				Card_no = 1;
 				pp->hand[1] = *--Topcard;
-#ifdef DEBUG
-				if (Debug)
-					fprintf(outf, "DOMOVE: Draw %s\n", C_name[*Topcard]);
-#endif
+				debug("DOMOVE: Draw %s\n", C_name[*Topcard]);
 				goto acc;
 			}
 			pp->new_battle = FALSE;
@@ -243,8 +230,7 @@ mustpick:
 	}
 
 	card = pp->hand[Card_no];
-	if (Debug)
-		fprintf(outf, "PLAYCARD: Card = %s\n", C_name[card]);
+	debug("PLAYCARD: Card = %s\n", C_name[card]);
 	Next = FALSE;
 	switch (card) {
 	  case C_200:
@@ -391,10 +377,10 @@ prompt(int promptno)
 	else {
 		x_move(MOVE_Y, MOVE_X);
 		if (promptno == MOVEPROMPT)
-			standout();
+			x_standout();
 		x_addstr(names[promptno]);
 		if (promptno == MOVEPROMPT)
-			standend();
+			x_standend();
 		x_addch(' ');
 		last_prompt = promptno;
 	}
