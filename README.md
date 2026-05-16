@@ -24,6 +24,8 @@ Debian Bookworm, Zorin 18, probably some others I've forgotten now....)
 It probably builds on MacOS, but I don't have a working Mac anymore so I
 don't have any way to test that.
 
+2. It's now been tested building under cygwin on Windows 11.
+
 ### KOWN BUGS
 
 1. At the conclusion of each "hand", the "Milestones Played" of the player
