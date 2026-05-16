@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <time.h>
+#include <ncurses.h> // Just to get the "bool" type included
 
 extern bool Debug;
 extern FILE	*outf;
