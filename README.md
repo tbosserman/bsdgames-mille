@@ -25,6 +25,7 @@ It probably builds on MacOS, but I don't have a working Mac anymore so I
 don't have any way to test that.
 
 2. It's now been tested building under cygwin on Windows 11.
+3. Now tested on FreeBSD 15.
 
 ### KOWN BUGS
 
