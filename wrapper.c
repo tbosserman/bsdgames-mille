@@ -15,9 +15,11 @@ WINDOW *x_stdscr;
 int x_mvprintw(int y, int x, const char *fmt, ...)
 {
     va_list	ap;
+    int		ret;
 
     wmove(x_stdscr, y, x);
     va_start(ap, fmt);
-    vw_printw(x_stdscr, fmt, ap);
+    ret = vw_printw(x_stdscr, fmt, ap);
     va_end(ap);
+    return(ret);
 }
